@@ -1,4 +1,4 @@
 # Logic_Man
 &lt;PROJETO EM ANDAMENTO>
 
-&lt; oi
+Projetado destinado a estudo próprio;
