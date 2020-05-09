@@ -9,7 +9,7 @@ module.exports= {
     },
 
     async create(req,res){
-        const {name,email, password, phone}= req.body;
+        const {name,email, phone, password}= req.body;
         const id= crypto.randomBytes(4).toString('HEX');
 
         const response= await connection('users').where('email', email).first();
@@ -25,8 +25,8 @@ module.exports= {
                 id,
                 name,
                 email,
-                password,
-                phone
+                phone,
+                password
             });
 
             return res.json({id});

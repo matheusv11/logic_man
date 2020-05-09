@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/matheusv11/Logic_Man#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "knex": "^0.21.1",
     "socket.io": "^2.3.0",
