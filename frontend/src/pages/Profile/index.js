@@ -1,9 +1,52 @@
-import React from 'react';
+//---------------------------IMPORTS-------------------------------------------------
 
-const Home= ()=>{
-    return(
-        <h1>Home</h1>
+import React,{useEffect, useState} from 'react';
+import {useLocation} from 'react-router-dom';
+import api from  '../../services/api';
+import Adm from './adm';
+import View from './view';
+//styles
+import '../../assets/css/global.css';
+import '../../assets/fonts/ionicons.min.css';
+import '../../assets/bootstrap/css/bootstrap.min.css';
+import './styles.css';
+
+
+//---------------------------CONSTANTES-------------------------------------------------
+
+const Profile= ()=>{
+
+const user_id= localStorage.getItem('user_id');
+const [contents, setContents]=useState([]);
+
+const query = new URLSearchParams(useLocation().search);
+const query_id= query.get("id");//Melhorar esses imports
+
+//---------------------------PERFIL-------------------------------------------------
+useEffect(()=>{
+    api.get('profile', {
+        headers:{
+            Authorization: query_id
+        }
+    }).then(response=>{
+       setContents(response.data);
+    })
+}, [query_id]);
+
+//---------------------------REACT-------------------------------------------------
+
+return(
+    
+    <div>  
+        {user_id ? 
+        (<Adm contents={contents}/>)       
+         : 
+         (<View contents={contents}/>)}
+    
+    </div>
+
+        
     );
 }
 
-export default Home;
+export default Profile;

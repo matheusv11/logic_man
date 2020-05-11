@@ -1,3 +1,5 @@
+//---------------------------IMPORTS-------------------------------------------------
+
 import React, {useState} from 'react';
 import {useHistory} from 'react-router-dom';//Podemos exportar em outro arquivo
 import api from '../../services/api';
@@ -8,17 +10,34 @@ import '../../assets/fonts/ionicons.min.css';
 import '../../assets/bootstrap/css/bootstrap.min.css';
 import './styles.css';
 
-const Home= ()=>{
+//---------------------------CONSTANTES-------------------------------------------------
+
+const Login= ()=>{
 
     const history= useHistory();
 
     const[email, setEmail]= useState('');
     const[password, setPassword]= useState('');
+    
+////-------------------------LOGAR-------------------------------------------------
 
-    const login= (e)=>{
+    const login= async (e)=>{
         e.preventDefault();
+        
+        const data= {email, password}
+
+        try{
+            const response= await api.post('auth', data);
+            localStorage.setItem('user_id', response.data.id);
+            history.push(`/perfil?id=${response.data.id}`);
+        }
+        catch(error){
+            alert('Email ou senha incorretos');
+        }
+        
     
     }
+////-------------------------REACT-------------------------------------------------
 
     return(
         <div className="login-clean">
@@ -38,8 +57,6 @@ const Home= ()=>{
 
             </div>
 
-
-                
             <div className="form-group">
                 <input className="form-control" type="password" name="password" placeholder="Senha"
                 value={password}
@@ -62,4 +79,4 @@ const Home= ()=>{
     );
 }
 
-export default Home;
+export default Login;
