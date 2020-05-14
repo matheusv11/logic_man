@@ -1,5 +1,5 @@
 //---------------------------IMPORTS-------------------------------------------------
-import React,{useState} from 'react';
+import React from 'react';
 import {useHistory, Link} from 'react-router-dom';
 import api from '../../services/api';
 
@@ -9,7 +9,6 @@ const Adm= ({contents})=>{
 
 const history= useHistory();
 const user_id= localStorage.getItem('user_id');
-const [filtro, setFilter]=useState([]);
 
 //---------------------------LOGOUT-------------------------------------------------
 
@@ -27,12 +26,15 @@ const deletar= async(id)=>{
                 Authorization: user_id
             }
         });
-        setFilter(filtro.filter(conteudo=> conteudo.id !== id));
+        
+        //setFiltro(filtro.filter(conteudo=> conteudo.id !== id));
     }
     catch(error){
         alert('erro ao deletar');
     }
 }
+
+
 //---------------------------REACT-------------------------------------------------
 
 return(
@@ -60,7 +62,7 @@ return(
             
             <div className="row row-cols-2">
                 {contents.map(conteudo=>(
-                     <div className="col">
+                     <div className="col" key={conteudo.id}>
                         <div className="card mt-4" style={{width: 18 + 'rem'}}>
                             <div className="card-body">
                                 <h5 className="card-title">{conteudo.title}</h5>

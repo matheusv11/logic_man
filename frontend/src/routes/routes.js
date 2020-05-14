@@ -6,6 +6,7 @@ import Register from '../pages/Register';
 import Login from '../pages/Login';
 import Profile from '../pages/Profile';
 import NewContent from '../pages/NewContent';
+import Comment from '../pages/Comment';
 
 const Routes = ()=>{
     
@@ -17,6 +18,7 @@ const Routes = ()=>{
                 <Route path="/login" component={Login}/>
                 <Route path="/perfil" component={Profile}/>
                 <Route path="/newcontent" component={NewContent}/>
+                <Route path="/comentario" component={Comment}/>
             </Switch>
         </BrowserRouter>
     )

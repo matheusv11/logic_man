@@ -3,8 +3,8 @@
 import React,{useEffect, useState} from 'react';
 import {useLocation} from 'react-router-dom';
 import api from  '../../services/api';
-import Adm from './adm';
-import View from './view';
+import Adm from '../partials/adm';
+import View from '../partials/view';
 //styles
 import '../../assets/css/global.css';
 import '../../assets/fonts/ionicons.min.css';
